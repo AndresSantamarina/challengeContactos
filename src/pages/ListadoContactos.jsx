@@ -1,11 +1,10 @@
 import { Container } from 'react-bootstrap';
+import ListaContactos from '../components/ListaContactos';
 
 const ListadoContactos = () => {
     return (
       <Container>
-        <h2 className='m-3'>
-            Lista de contactos
-        </h2>
+       <ListaContactos/>
       </Container>
     );
 };
