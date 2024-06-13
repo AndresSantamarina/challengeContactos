@@ -51,6 +51,8 @@ const ContactoProvider = ({ children }) => {
     }
   };
 
+
+  //HACER ESTA FUNCION EN EL REDUCER
   const cambiarFavorito = async (id) => {
     try {
       const respuesta = await contactoApi.put(`/favorito/${id}`);

@@ -23,5 +23,16 @@ export const contactoReducer = (state, action) => {
                     (contacto) => contacto._id !== action.payload
                 )
             }
+
+            //aunque igual yo uso el editarContacto, sería lo mismo
+        case "cambiarFavorito":
+            return {
+                ...state,
+                contacts: state.contacts.map((contacto)=>
+                contacto.favorito === action.payload.favorito ? contacto : action.payload
+                )
+            }
+
+            //agregar caso para cambiar favorito
     }
 }
