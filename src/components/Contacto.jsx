@@ -1,18 +1,21 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ContactoContext } from "../context/ContactoContext";
 import EditarContacto from "./EditarContacto";
 import { Button } from "react-bootstrap";
 
 const Contacto = ({ contacto }) => {
-  const { eliminarContacto } = useContext(ContactoContext);
+  const { eliminarContacto} = useContext(ContactoContext);
   const [mostrarEditar, setMostrarEditar] = useState(false);
 
   const handleEdit = () => {
+  
     setMostrarEditar(true);
   };
 
   const handleCancel = () => {
+  
     setMostrarEditar(false);
+   
   };
 
   return (
@@ -32,14 +35,15 @@ const Contacto = ({ contacto }) => {
           </p>
           <div className="d-flex">
             <>
+              <Button variant="outline-primary" onClick={handleEdit}>
+                Editar
+              </Button>
               <Button
-                className="btn btn-outline-danger ms-2"
+                className="ms-2"
+                variant="outline-danger"
                 onClick={() => eliminarContacto(contacto._id)}
               >
                 Eliminar
-              </Button>
-              <Button className="btn btn-outline-primary" onClick={handleEdit}>
-                Editar
               </Button>
             </>
           </div>

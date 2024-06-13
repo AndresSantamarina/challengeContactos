@@ -1,9 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ContactoContext } from "../context/ContactoContext";
 import Contacto from "./Contacto";
 
 const ListaContactos = () => {
-  const { state } = useContext(ContactoContext);
+  const { state, obtenerContactos } = useContext(ContactoContext);
+
+  useEffect(()=>{
+    obtenerContactos()
+  }, [])
 
   return (
     <>

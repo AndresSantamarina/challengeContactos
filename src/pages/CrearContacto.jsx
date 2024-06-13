@@ -1,11 +1,14 @@
 import { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { ContactoContext } from "../context/ContactoContext";
+import { useNavigate } from "react-router-dom";
 
 const CrearContacto = () => {
   const [nombre, setNombre] = useState("");
   const [mail, setMail] = useState("");
   const [telefono, setTelefono] = useState("");
+
+  const navigate = useNavigate()
 
   const { agregarContacto } = useContext(ContactoContext);
 
@@ -15,6 +18,7 @@ const CrearContacto = () => {
     setNombre("");
     setMail("");
     setTelefono("");
+    navigate("/contactos")
   };
 
   return (

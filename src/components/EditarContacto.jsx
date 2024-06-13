@@ -3,14 +3,16 @@ import { ContactoContext } from "../context/ContactoContext";
 import { Button, Form } from "react-bootstrap";
 
 const EditarContacto = ({ handleCancel, contacto }) => {
-  const [nombre, setNombre] = useState("");
-  const [mail, setMail] = useState("");
-  const [telefono, setTelefono] = useState("");
+  const [nombre, setNombre] = useState(contacto.nombre);
+  const [mail, setMail] = useState(contacto.mail);
+  const [telefono, setTelefono] = useState(contacto.telefono);
 
-  const { editarContacto } = useContext(ContactoContext);
+  const { actualizarContacto, obtenerContactos } = useContext(ContactoContext);
 
-  const handleSubmit = () => {
-    editarContacto({ ...contacto, nombre, mail, telefono });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await actualizarContacto({ ...contacto, nombre, mail, telefono });
+    await obtenerContactos()
     handleCancel();
   };
 
@@ -48,7 +50,7 @@ const EditarContacto = ({ handleCancel, contacto }) => {
       </Button>
       <Button
         variant="warning"
-        type="submit"
+        type="button"
         className="ms-2"
         onClick={handleCancel}
       >

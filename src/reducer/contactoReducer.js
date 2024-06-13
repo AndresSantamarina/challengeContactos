@@ -1,12 +1,27 @@
 export const contactoReducer = (state, action) => {
     switch (action.type) {
         case "crearContacto":
-            return console.log("crear");
+            return {
+                ...state,
+                contacts: [...state.contacts, action.payload]
+            }
         case "obtenerContacto":
-            return console.log("obtener");
+            return {
+                ...state,
+                contacts: action.payload
+            }
         case "editarContacto":
-            return console.log("editar");
+            return {
+                ...state,
+                contacts: state.contacts.map((contacto) =>
+                    contacto._id === action.payload._id ? action.payload : contacto)
+            }
         case "eliminarContacto":
-            return console.log("eliminar");
+            return {
+                ...state,
+                contacts: state.contacts.filter(
+                    (contacto) => contacto._id !== action.payload
+                )
+            }
     }
 }
