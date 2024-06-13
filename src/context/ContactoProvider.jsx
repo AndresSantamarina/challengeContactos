@@ -52,11 +52,11 @@ const ContactoProvider = ({ children }) => {
   };
 
 
-  //HACER ESTA FUNCION EN EL REDUCER
+  //USAR UN CASO DEL REDUCER, ANTES REUTILIZABA editarContacto
   const cambiarFavorito = async (id) => {
     try {
       const respuesta = await contactoApi.put(`/favorito/${id}`);
-      dispatch({ type: "editarContacto", payload: respuesta.data });
+      dispatch({ type: "cambiarFavorito", payload: respuesta.data });
       obtenerContactos();
     } catch (error) {
       console.error(error);

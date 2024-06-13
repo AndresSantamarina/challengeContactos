@@ -3,9 +3,6 @@ import { Button, Container, Form } from "react-bootstrap";
 import { ContactoContext } from "../context/ContactoContext";
 import Contacto from "../components/Contacto";
 
-
-//AGREGAR EL CAMBIO DE FAV AL REDUCER, NO HACERLO ACÁ
-
 const Favoritos = () => {
   const { state, obtenerContactos } = useContext(ContactoContext);
   const [nombreBuscado, setNombreBuscado] = useState("");
