@@ -9,31 +9,18 @@ const ContactoProvider = ({ children }) => {
   };
   const [state, dispatch] = useReducer(contactoReducer, valorInicial);
 
-  const obtenerContactos = async ()=>{
-       try {
-        const respuesta = await contactoApi.get("/");
-        dispatch({ type: "obtenerContacto", payload: respuesta.data });
-      } catch (error) {
-        console.error(error);
-      }
-  }
+  const obtenerContactos = async () => {
+    try {
+      const respuesta = await contactoApi.get("/");
+      dispatch({ type: "obtenerContacto", payload: respuesta.data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  useEffect(()=>{
-    obtenerContactos()
-  }, [])
-
-
-  // useEffect(() => {
-  //   const getLista = async () => {
-  //     try {
-  //       const respuesta = await contactoApi.get("/");
-  //       dispatch({ type: "obtenerContacto", payload: respuesta.data });
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   getLista();
-  // }, []);
+  useEffect(() => {
+    obtenerContactos();
+  }, []);
 
   const agregarContacto = async (contacto) => {
     try {
@@ -43,10 +30,6 @@ const ContactoProvider = ({ children }) => {
       console.error(error);
     }
   };
-
-  // const editarContacto = (contacto) => {
-  //   dispatch({ type: "editarContacto", payload: contacto });
-  // };
 
   const actualizarContacto = async (contacto) => {
     {
@@ -59,22 +42,35 @@ const ContactoProvider = ({ children }) => {
     }
   };
 
-  // const eliminarContacto = (id) => {
-  //   dispatch({ type: "eliminarContacto", payload: id });
-  // };
-
   const eliminarContacto = async (id) => {
     try {
-      await contactoApi.delete(`/${id}`)
-      dispatch({type: "eliminarContacto", payload: id})
+      await contactoApi.delete(`/${id}`);
+      dispatch({ type: "eliminarContacto", payload: id });
     } catch (error) {
-      console.error(error)
+      console.error(error);
+    }
+  };
+
+  const cambiarFavorito = async (id) => {
+    try {
+      const respuesta = await contactoApi.put(`/favorito/${id}`);
+      dispatch({ type: "editarContacto", payload: respuesta.data });
+      obtenerContactos();
+    } catch (error) {
+      console.error(error);
     }
   };
 
   return (
     <ContactoContext.Provider
-      value={{ state, agregarContacto, actualizarContacto, eliminarContacto, obtenerContactos }}
+      value={{
+        state,
+        agregarContacto,
+        actualizarContacto,
+        eliminarContacto,
+        obtenerContactos,
+        cambiarFavorito,
+      }}
     >
       {children}
     </ContactoContext.Provider>
@@ -82,13 +78,3 @@ const ContactoProvider = ({ children }) => {
 };
 
 export default ContactoProvider;
-
-// const eliminarContacto = async (id) => {
-//   try {
-//     const respuesta = await contactoApi.delete(`/${id}`)
-//     dispatch({ type: "eliminarContacto", payload: id });
-//   } catch (error) {
-//     console.error(error)
-//   }
-
-// };

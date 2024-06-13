@@ -12,7 +12,7 @@ const EditarContacto = ({ handleCancel, contacto }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await actualizarContacto({ ...contacto, nombre, mail, telefono });
-    await obtenerContactos()
+    await obtenerContactos();
     handleCancel();
   };
 

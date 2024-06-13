@@ -8,7 +8,7 @@ const CrearContacto = () => {
   const [mail, setMail] = useState("");
   const [telefono, setTelefono] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { agregarContacto } = useContext(ContactoContext);
 
@@ -18,7 +18,7 @@ const CrearContacto = () => {
     setNombre("");
     setMail("");
     setTelefono("");
-    navigate("/contactos")
+    navigate("/contactos");
   };
 
   return (

@@ -5,9 +5,9 @@ import Contacto from "./Contacto";
 const ListaContactos = () => {
   const { state, obtenerContactos } = useContext(ContactoContext);
 
-  useEffect(()=>{
-    obtenerContactos()
-  }, [])
+  useEffect(() => {
+    obtenerContactos();
+  }, []);
 
   return (
     <>

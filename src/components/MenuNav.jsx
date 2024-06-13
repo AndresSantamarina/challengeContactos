@@ -9,9 +9,15 @@ const MenuNav = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink to={"/contactos"} className="nav-link">Lista de contactos</NavLink>
-            <NavLink to={"/formulario"} className="nav-link">Agregar contacto</NavLink>
-            <NavLink to={"/favoritos"} className="nav-link">Favoritos</NavLink>
+            <NavLink to={"/contactos"} className="nav-link">
+              Lista de contactos
+            </NavLink>
+            <NavLink to={"/formulario"} className="nav-link">
+              Agregar contacto
+            </NavLink>
+            <NavLink to={"/favoritos"} className="nav-link">
+              Favoritos
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>

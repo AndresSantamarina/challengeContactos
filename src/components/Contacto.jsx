@@ -1,21 +1,22 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ContactoContext } from "../context/ContactoContext";
 import EditarContacto from "./EditarContacto";
 import { Button } from "react-bootstrap";
 
 const Contacto = ({ contacto }) => {
-  const { eliminarContacto} = useContext(ContactoContext);
+  const { eliminarContacto, cambiarFavorito } = useContext(ContactoContext);
   const [mostrarEditar, setMostrarEditar] = useState(false);
 
   const handleEdit = () => {
-  
     setMostrarEditar(true);
   };
 
   const handleCancel = () => {
-  
     setMostrarEditar(false);
-   
+  };
+
+  const handleFavorito = () => {
+    cambiarFavorito(contacto._id);
   };
 
   return (
@@ -44,6 +45,17 @@ const Contacto = ({ contacto }) => {
                 onClick={() => eliminarContacto(contacto._id)}
               >
                 Eliminar
+              </Button>
+              <Button
+                className="ms-2"
+                variant={
+                  contacto.favorito ? "outline-secondary" : "outline-success"
+                }
+                onClick={handleFavorito}
+              >
+                {contacto.favorito
+                  ? "Quitar de favoritos"
+                  : "Agregar a favoritos"}
               </Button>
             </>
           </div>
